@@ -1,0 +1,118 @@
+
+
+Open VS Project
+break and continue,
+array,
+valuetype vs reftype
+ref,
+out,
+var
+dynamic
+optional
+named
+string vs stringbuilder
+tostring vs converttostring,----done
+
+Jagged Array
+CTS
+Managed unmanaged
+Nullable vs NULL coalescing
+Boxing vs UnBoxing
+this vs base--- 
+OOP Features and limitations 
+Class vs Object 
+Characteristics of an object 
+
+
+this vs base
+Access Modifier 
+Implement Encapsulation :Properties
+Constructor vs destructor 
+Inheritance 
+Polymorphism 
+
+Interface 
+Abstract class 
+Sealed class 
+Partial class 
+Collections-ArrayList-
+static methods call
+x++
+
+
+
+Method hiding 
+Is vs As
+Exception Handling
+List
+LINQ-Where,OrderBy,Select,All,Any,Contains,Average,COunt,Max,,Distinct,
+
+First() vs Single()
+
+List<int> lst=new List<int>(){2,3,4};
+lst.where(i=>i==1)-- records---2{1}
+lst.where(i=>i==1).First()---1---wont execute further once condition met---Exception
+lst.where(i=>i==1).SIngle() ----exception---{1}---1--throw exception whe there is no records
+
+FirstOrDefault ,singleorDefault
+st.where(i=>i==1).FirstOrDefault()---handle the exception--throw exception--blank value
+st.where,singleorDefault()-----it will handle excetion giving value so it wont throw exception
+
+is a ---Inheritance--vs has a ---Composition---relation ship
+Customer---Address----SIlverCustomer
+
+
+BMW is a car
+Student has a DOB
+
+class customer {
+Address
+
+
+
+}
+
+SIlverCustomer:Customer{
+
+
+}
+
+
+EF steps
+
+step-1 //Install Entity Framework
+
+install-package EntityFramework -version:6.1.3
+
+step-2 Create Model classes
+step-3 create COntext class present using sytem.data.entity;
+
+publcic class PlutoCOntext:DbConetxt
+{
+//DbSet is a table
+public DbSet<Customer> customers{get;set;}
+public DbSet<Authors> customers{get;set;}
+public DbSet<Tags> customers{get;set;}
+
+Public PlutoCOntext():base("name=constr"){}
+
+}
+
+
+step-4 do constr activity in web.config---providerName= system.data.sqlclient
+step-5 go to PM 
+enable-migrations------only one time in alifecycle of projetc
+add-migartion InitialModel
+update-database
+
+
+
+
+git init//only one time to do
+git add .
+git commit -m "My first commit"
+git remote add origin https://github.com/tabish0211/CICD-Console.git  ---only one time
+git push -u origin master
+
+
+
