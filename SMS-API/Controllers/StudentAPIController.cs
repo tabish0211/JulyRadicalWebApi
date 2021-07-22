@@ -10,59 +10,72 @@ namespace SMS_API.Controllers
 {
     public class StudentAPIController : ApiController
     {
-        private static List<Student> students = new List<Student>();
+        //private static List<Student> students = new List<Student>();
+
+        private static StudentDbContext contxt = new StudentDbContext();
 
         // POST http://localhost:58025/api/StudentAPI
         public void Post([FromBody]Student student)
         {
-            students.Add(student);
+            contxt.students.Add(student);//In memory
+            contxt.SaveChanges();//It will transfer your object(student) to DB
+           // contxt.Dispose();
         }
 
         // GET http://localhost:58025/api/StudentAPI
         public IEnumerable<Student> Get()
         {
-            return students;
+            return contxt.students.ToList();
         }
 
-        //// GET http://localhost:58025/api/StudentAPI/1002
+        ////// GET http://localhost:58025/api/StudentAPI/1002
         public Student Get(int id)
         {
-            return students.Where(s => s.Id == id).FirstOrDefault();
+            return contxt.students.Where(s => s.Id == id).FirstOrDefault();
         }
 
 
         //// PUT http://localhost:58025/api/StudentAPI/1002
-        
+
         public void Put(int id, [FromBody]Student student)
         {
-            var existingObject = students.Where(s => s.Id == id).FirstOrDefault();
+            var existingObject = contxt.students.Where(s => s.Id == id).FirstOrDefault();
 
-            if (existingObject!=null)
+            if (existingObject != null)
             {
 
                 existingObject.Name = student.Name;
                 existingObject.Class = student.Class;
             }
 
-            students.Remove(students.Where(s => s.Id == id).FirstOrDefault());
-            //1002--Rakesh---1--existingObject----
-            //10002--Mahesh---2
-            students.Add(existingObject);
+
+            contxt.SaveChanges();
+
+           
+           
 
 
         }
 
 
-        //// DELETE  http://localhost:58025/api/StudentAPI/1002
+        ////// DELETE  http://localhost:58025/api/StudentAPI/1002
         public void Delete(int id)
         {
-            var existingObject = students.Where(s => s.Id == id).FirstOrDefault();
+            var existingObject = contxt.students.Where(s => s.Id == id).FirstOrDefault();
 
             if (existingObject != null)
             {
-                students.Remove(students.Where(s => s.Id == id).FirstOrDefault());
+                contxt.students.Remove(existingObject);
+                contxt.SaveChanges();
             }
         }
+
+        ~StudentAPIController()
+        {
+
+            contxt.Dispose();
+        }
+
     }
 }
 

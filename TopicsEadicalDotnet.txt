@@ -107,6 +107,16 @@ update-database
 
 
 
+MS Web Application Structure
+MVC
+web form vs mvc
+Action methods
+Routing
+Data passing techniques--viewbag,viewdata,session,tempdata
+View Model concept
+
+
+
 
 git init//only one time to do
 git add .
